@@ -1,0 +1,25 @@
+import argparse
+from word2vec_loader import Word2VecLoader
+from similarity_calculator import SimilarityCalculator
+
+def main():
+    parser = argparse.ArgumentParser(description="Word2Vec and Phrase Similarity Calculator")
+
+    parser.add_argument("--word2vec-file", required=True, help="Path to the Word2Vec binary file")
+    parser.add_argument("--phrases-file", required=True, help="Path to the phrases CSV file")
+    parser.add_argument("--output-similarity-matrix", required=True, help="Path to save the similarity matrix CSV file")
+
+    args = parser.parse_args()
+
+    # Load Word2Vec vectors
+    w2v_loader = Word2VecLoader(args.word2vec_file)
+
+    # Calculate phrase similarities
+    similarity_calculator = SimilarityCalculator(w2v_loader.model, args.phrases_file)
+    similarity_matrix = similarity_calculator.calculate_similarity_matrix()
+
+    # Save the similarity matrix as a CSV file
+    pd.DataFrame(similarity_matrix, columns=similarity_calculator.phrases, index=similarity_calculator.phrases).to_csv(args.output_similarity_matrix)
+
+if _name_ == "_main_":
+    main()
