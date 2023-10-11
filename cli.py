@@ -5,9 +5,9 @@ from similarity_calculator import SimilarityCalculator
 def main():
     parser = argparse.ArgumentParser(description="Word2Vec and Phrase Similarity Calculator")
 
-    parser.add_argument("--word2vec-file", required=True, help="Path to the Word2Vec binary file")
-    parser.add_argument("--phrases-file", required=True, help="Path to the phrases CSV file")
-    parser.add_argument("--output-similarity-matrix", required=True, help="Path to save the similarity matrix CSV file")
+    parser.add_argument("--word2vec-file", required=True, help="C:\Users\I1925\Downloads\GoogleNews-vectors-negative300.bin")
+    parser.add_argument("--phrases-file", required=True, help="phrases.csv")
+    parser.add_argument("--output-similarity-matrix", required=True, help="vectors.csv")
 
     args = parser.parse_args()
 
